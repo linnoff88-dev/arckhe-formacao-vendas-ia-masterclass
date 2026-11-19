@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.2 — Preço, objeções e o motor do processo | Masterclass: Como Vender Soluções de IA</title>
+  <meta name="inema-course" content="vender-ia-masterclass">
+
+  <!-- ANTI-FOUC -->
+  <script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'teal' };
+      function clone(o) { var r = {}; for (var x in o) r[x] = o[x]; return r; }
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') { for (var k in DEF) if (parsed[k] != null) p[k] = parsed[k]; }
+        } else {
+          var legacy = localStorage.getItem('theme');
+          if (legacy === 'light') p.theme = 'claro';
+          else if (legacy === 'dark') p.theme = 'inema-dark';
+        }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = {
+        'inema-dark': { dark: true, attr: null, cs: 'dark' },
+        'claro': { dark: false, attr: null, cs: 'light' },
+        'sepia': { dark: false, attr: 'sepia', cs: 'light' },
+        'foco': { dark: null, attr: 'foco', cs: null },
+        'contraste': { dark: true, attr: 'contraste', cs: 'dark' }
+      };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark === true) html.classList.add('dark');
+      else if (t.dark === false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark') ? 'dark' : 'light'));
+      html.setAttribute('data-font', p.font || 'inter');
+      html.setAttribute('data-accent', p.accent || 'teal');
+      var s = html.style;
+      var scale = (+p.fontScale || 100);
+      s.setProperty('--inema-font-scale', (scale / 100).toString());
+      s.setProperty('font-size', scale + '%');
+      s.setProperty('--measure', (+p.lineWidth || 68) + 'ch');
+      s.setProperty('--lh-body', (+p.leading || 1.7).toString());
+      var fam = p.font === 'system' ? 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+        : (p.font === 'leitura' ? '"Atkinson Hyperlegible", "Inter", system-ui, sans-serif' : '"Inter", system-ui, sans-serif');
+      s.setProperty('--font-body', fam);
+      var ACC = { emerald: [152,76,45], blue: [217,91,60], purple: [258,90,66], amber: [38,92,50], teal: [174,72,41], rose: [350,89,60] };
+      var a = ACC[p.accent] || ACC.teal;
+      s.setProperty('--accent-h', a[0] + ''); s.setProperty('--accent-s', a[1] + '%'); s.setProperty('--accent-l', a[2] + '%');
+      s.setProperty('--accent', 'hsl(' + a[0] + ' ' + a[1] + '% ' + a[2] + '%)');
+    } catch (err) {
+      try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme = 'dark'; } catch (e) {}
+    }
+  })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+
+  <script type="application/json" data-inema-manifest>
+{"course":"vender-ia-masterclass","tracks":[
+{"n":"1","title":"Método e escuta","modules":[{"id":"1-1","title":"A venda calma: os quatro pilares","topics":7,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"Duas orelhas, uma boca","topics":7,"href":"curso/trilha1/modulo-1-2.html"}]},
+{"n":"2","title":"Diagnóstico","modules":[{"id":"2-1","title":"A conversa de diagnóstico","topics":7,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Onde o cliente está na decisão","topics":7,"href":"curso/trilha2/modulo-2-2.html"}]},
+{"n":"3","title":"Leitura da sala","modules":[{"id":"3-1","title":"Os cinco sinais de energia","topics":7,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Três vieses que movem a compra","topics":7,"href":"curso/trilha3/modulo-3-2.html"}]},
+{"n":"4","title":"Fechamento e processo","modules":[{"id":"4-1","title":"A sequência de fechamento em três passos","topics":7,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Preço, objeções e o motor do processo","topics":7,"href":"curso/trilha4/modulo-4-2.html"}]}
+]}
+</script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    .skip { position: absolute; left: -9999px; top: 0; z-index: 100; background: #111827; color: #FACC15; padding: .5rem 1rem; border-radius: .5rem; }
+    .skip:focus { left: .5rem; top: .5rem; }
+    [id] { scroll-margin-top: 88px; }
+    :focus-visible { outline: 3px solid var(--accent-2, #38bdf8); outline-offset: 2px; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .hover\:border-emerald-500\/30:hover { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37, 99, 235, 0.18); }
+    html:not(.dark) .hover\:border-blue-500\/30:hover { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .hover\:border-purple-500\/30:hover { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.28); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217, 119, 6, 0.18); }
+    html:not(.dark) .hover\:border-amber-500\/30:hover { border-color: rgba(217, 119, 6, 0.28); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+    html:not(.dark) .text-teal-400 { color: #0f766e; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .border-teal-500\/40 { border-color: rgba(13, 148, 136, 0.32); }
+    html:not(.dark) .hover\:border-teal-500\/30:hover { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0f766e; }
+    html:not(.dark) .group:hover .group-hover\:text-teal-400 { color: #0f766e; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-nova-versao" style="position:relative;z-index:9998;background:#FACC15;color:#0c0c10;font:600 14px/1.4 Sora,Inter,system-ui,sans-serif;padding:10px 16px;text-align:center">Este curso tem uma versão nova, mais direta, com prática e conversa simulada. <a href="https://inematds.github.io/formacao-vendas-ia-masterclass-v72/" style="color:#0c0c10;text-decoration:underline;font-weight:700">Abrir a versão nova →</a></div>
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🧭</span>
+            <span class="font-bold text-lg hidden sm:inline">Masterclass</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+          <span class="text-neutral-600">-</span>
+          <a href="https://inema.pro" target="_blank" class="text-amber-700 hover:text-amber-600 dark:text-slate-300 dark:hover:text-slate-200 text-sm font-medium">PRO</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <button type="button" data-inema-journey-open class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors text-sm" title="Sua jornada no curso">
+            <span aria-hidden="true">◷</span><span class="hidden md:inline">Minha jornada</span>
+            <span class="inema-journey-badge hidden" data-inema-journey-badge aria-hidden="true"></span>
+          </button>
+          <a href="../trilha1/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Método</span></a>
+          <a href="../trilha2/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Diagnóstico</span></a>
+          <a href="../trilha3/index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Leitura</span></a>
+          <a href="index.html" class="px-2 sm:px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Breadcrumb">
+      <div class="flex items-center space-x-2 text-sm text-neutral-400">
+        <a href="../../index.html" class="hover:text-amber-400">Início</a>
+        <span>/</span>
+        <a href="index.html" class="hover:text-amber-400">Trilha 4</a>
+        <span>/</span>
+        <span class="text-amber-400">Módulo 4.2</span>
+      </div>
+    </nav>
+
+    <article id="modulo-4-2" data-inema-module="4-2" data-inema-track="4">
+    <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MODULO 4.2</span>
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4">💰 Preço, objeções e o motor do processo</h1>
+        <p class="text-lg text-neutral-400 max-w-3xl" data-inema-block="m4-2-head">O último módulo fecha o ciclo: o que dizer quando pedem preço antes da hora, por que o cliente que mais pechincha costuma ser o pior, como responder objeções conforme o estágio, e quais números do seu processo transformam sorte em método.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">7</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">70</div><div class="text-xs text-neutral-400">Minutos</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+          <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Scripts</div><div class="text-xs text-neutral-400">Tipo</div></div>
+        </div>
+        <div data-inema-meter="modulo:4-2" class="inema-meter mt-6 max-w-md" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do módulo 4.2">
+          <div class="flex items-center gap-3">
+            <span class="text-amber-400 font-bold w-12" data-inema-meter-pct>0%</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-16" data-inema-meter-frac>0 de 7</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-10">
+
+        <div><!-- COLUNA PRINCIPAL -->
+
+        <!-- TOPICO 1 -->
+        <section id="topico-1" data-inema-topic="modulo-4-2#topico-1" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+              <h2 class="text-2xl font-bold">💬 "Quanto custa?" cedo demais</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-4 leading-relaxed" data-inema-block="m4-2-t1-p1">
+            A mesma pergunta significa coisas opostas dependendo de quando aparece.
+            <strong class="text-amber-400">No fim da conversa, "quanto custa?" é sinal de compra</strong> — responda direto.
+            Nos dois primeiros minutos, é sinal de que a pessoa quer transformar você em uma linha de comparação de preços.
+          </p>
+          <div class="bg-dark-700/40 border-l-4 border-amber-500/40 rounded-r-lg px-4 py-3 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-amber-400">Novo aqui?</strong> Virar <strong>commodity</strong> é ser tratado como item intercambiável, escolhido só pelo preço.
+            Isso acontece quando o comprador não enxerga diferença entre você e o próximo orçamento — e a causa quase nunca é o valor: é a ausência de diagnóstico.</p>
+          </div>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+            <div class="p-4 border-b border-dark-600"><h3 class="font-semibold text-amber-400">🗣️ Fala pronta — devolver a pergunta com bom humor</h3></div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-400 mb-3"><strong class="text-neutral-300">Objetivo:</strong> não dar um número no escuro, sem parecer que você está escondendo preço.</p>
+              <pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">"Eu poderia te dizer um milhão agora e a gente encerrava por aqui — mas você veria
+o quanto isso é sem sentido, porque eu ainda não sei o que está acontecendo aí.
+
+Me deixa entender o problema primeiro. Aí eu te dou um número honesto,
+que você pode comparar com o que quiser."</pre>
+              <p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">Como verificar:</strong> essa frase só funciona dita com leveza e sem defensiva. Diga em voz alta: se soar irônica ou irritada, ajuste o tom — a intenção é aliviar, não repreender.</p>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🧭</span> A pergunta por trás da pergunta</h3>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Às vezes ele só quer saber se está no seu campo de atuação — e aí uma faixa resolve.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Às vezes ele foi mandado buscar três orçamentos — e aí vale perguntar quem definiu isso e com base em quê.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Sempre vale a contrapergunta: "para eu te responder direito — o preço é o que vai decidir, ou tem outra coisa pesando?".</span></li>
+            </ul>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 2 -->
+        <section id="topico-2" data-inema-topic="modulo-4-2#topico-2" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+              <h2 class="text-2xl font-bold">📊 A faixa que devolve a conversa</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t2-p1">
+            Quando você precisa dar alguma referência, dê uma <strong class="text-amber-400">faixa larga e honesta</strong> — e explique o que faz o número andar dentro dela.
+            "Tem cliente que gasta US$ 40 e tem cliente que gasta US$ 40 mil; depende do que você precisa" é uma resposta verdadeira que devolve a conversa para o problema
+            <em>(valores ilustrativos: adapte ao seu mercado)</em>.
+          </p>
+          <div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+            <svg viewBox="0 0 1000 220" class="w-full h-auto" role="img" aria-label="Régua horizontal de preço, do valor mínimo ao máximo, com três fatores marcados ao longo dela — escopo, integração e acompanhamento — mostrando o que faz o valor andar dentro da faixa">
+              <defs>
+                <pattern id="m42-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#f59e0b" opacity="0.12"/></pattern>
+                <linearGradient id="m42-bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f59e0b" stop-opacity="0.35"/><stop offset="1" stop-color="#fbbf24"/></linearGradient>
+                <filter id="m42-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect x="0" y="0" width="1000" height="220" fill="url(#m42-grid)"/>
+              <rect x="70" y="104" width="860" height="14" rx="7" fill="url(#m42-bar)"/>
+              <g font-family="Inter,sans-serif" font-weight="600">
+                <text x="70" y="86" fill="#fde68a" font-size="13">piso da faixa</text>
+                <text x="930" y="86" text-anchor="end" fill="#fbbf24" font-size="13">teto da faixa</text>
+                <circle cx="270" cy="111" r="10" fill="#2b1d05" stroke="#fbbf24" stroke-width="2"/>
+                <text x="270" y="152" text-anchor="middle" fill="#fde68a" font-size="13">escopo</text>
+                <text x="270" y="170" text-anchor="middle" fill="#fbbf24" font-size="11">quantos processos entram</text>
+                <circle cx="530" cy="111" r="10" fill="#2b1d05" stroke="#fbbf24" stroke-width="2"/>
+                <text x="530" y="152" text-anchor="middle" fill="#fde68a" font-size="13">integração</text>
+                <text x="530" y="170" text-anchor="middle" fill="#fbbf24" font-size="11">com quantos sistemas conversa</text>
+                <g filter="url(#m42-glow)"><circle cx="790" cy="111" r="13" fill="#2b1d05" stroke="#fbbf24" stroke-width="2.6"/></g>
+                <text x="790" y="152" text-anchor="middle" fill="#fde68a" font-size="13">acompanhamento</text>
+                <text x="790" y="170" text-anchor="middle" fill="#fbbf24" font-size="11">por quanto tempo eu fico junto</text>
+              </g>
+              <text x="500" y="46" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="12.5">a faixa não esconde o preço — ela mostra o que o define</text>
+            </svg>
+            <p class="text-xs text-neutral-500 mt-2 text-center">Olhe os três pontos sobre a régua: cada um é uma decisão do cliente, não uma variação do seu humor. É isso que torna a faixa uma resposta honesta.</p>
+          </div>
+          <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Preço se sustenta em valor dimensionado</h3>
+            <p class="text-neutral-300 mb-3">Se o diagnóstico mostrou um prejuízo de cem mil por ano e sua proposta custa dez, a conta se faz sozinha.
+            <strong class="text-white">Sem esse número, qualquer preço parece alto</strong> — porque não há referência contra a qual comparar.</p>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Valor é o tamanho da dor resolvida, medido na moeda do cliente: dinheiro, tempo ou risco.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Trabalhos muito baratos não precisam de todo esse processo — se dá para pagar no cartão sem pensar, uma conversa resolve.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Este método foi feito para trabalhos de valor relevante, personalizados, em que existe algo real a diagnosticar.</span></li>
+            </ul>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 3 -->
+        <section id="topico-3" data-inema-topic="modulo-4-2#topico-3" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+              <h2 class="text-2xl font-bold">🪝 Quem pechincha demais</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t3-p1">
+            Existe um padrão que se repete: <strong class="text-amber-400">quem briga por cada centavo antes de assinar costuma brigar por cada detalhe depois</strong>.
+            E quem diz "é justo, você vai resolver meu problema" e assina costuma virar o cliente que te indica para outros.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+              <h4 class="font-bold text-amber-400 mb-4">✓ Negociação legítima</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>"Esse valor está acima do que consigo agora — dá para começar por uma parte menor?"</span></li>
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Aqui a resposta certa é reduzir escopo, não reduzir preço pelo mesmo trabalho.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Sai um piloto menor, com resultado medido — e um cliente que cresce depois.</span></li>
+              </ul>
+            </div>
+            <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+              <h4 class="font-bold text-red-400 mb-4">✗ Desgaste disfarçado de negociação</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reconhece o valor, sabe que vai lucrar — e mesmo assim insiste por esporte.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Volta ao preço em toda conversa, mesmo depois de fechado.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esse comportamento não muda depois da assinatura: ele é a prévia do relacionamento.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Se ceder no preço, ceda também no escopo — sempre. Desconto puro ensina ao cliente que seu número era inflado, e a próxima conversa começa desse novo patamar.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 4 -->
+        <section id="topico-4" data-inema-topic="modulo-4-2#topico-4" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+              <h2 class="text-2xl font-bold">🧯 Objeções mudam com o estágio</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t4-p1">
+            A mesma frase — "está caro" — significa coisas diferentes em cada estágio.
+            <strong class="text-amber-400">Responder à objeção sem saber de onde ela vem é tratar o sintoma errado</strong>.
+          </p>
+          <div class="overflow-x-auto mb-6">
+            <table class="w-full text-sm border border-dark-600 rounded-xl overflow-hidden">
+              <thead class="bg-dark-700/60 text-neutral-300">
+                <tr>
+                  <th class="text-left px-4 py-3 font-semibold">Estágio</th>
+                  <th class="text-left px-4 py-3 font-semibold">O que a objeção realmente é</th>
+                  <th class="text-left px-4 py-3 font-semibold">O que fazer</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-dark-600 text-neutral-400">
+                <tr>
+                  <td class="px-4 py-3 text-neutral-300">Topo</td>
+                  <td class="px-4 py-3">Medo de errar. Ele nem tem clareza do problema.</td>
+                  <td class="px-4 py-3">Ensine. Não proponha nada ainda; ofereça a próxima conversa.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-neutral-300">Meio</td>
+                  <td class="px-4 py-3">Comparação. Ele está te medindo contra outra opção.</td>
+                  <td class="px-4 py-3">Diferencie pelo entendimento do problema e pelo que você diz que <em>não</em> faz.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-neutral-300">Fundo</td>
+                  <td class="px-4 py-3">Momento. Ele quer, mas o mês ou o time não comporta.</td>
+                  <td class="px-4 py-3">Reduza escopo ou marque um início futuro com data — não desconte.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 text-neutral-300">Qualquer um</td>
+                  <td class="px-4 py-3">Confiança. Ele não acredita que vai funcionar com ele.</td>
+                  <td class="px-4 py-3">Proponha um passo pequeno e verificável, com prazo curto.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🔍</span> A pergunta que descobre qual é</h3>
+            <p class="text-neutral-300 text-sm">"Quando você diz que está caro, é caro em relação ao orçamento que vocês têm, ou caro em relação ao que você acha que isso vai render?"
+            <strong class="text-white">A resposta separa problema de caixa de problema de valor</strong> — e cada um tem uma saída completamente diferente.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 5 -->
+        <section id="topico-5" data-inema-topic="modulo-4-2#topico-5" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+              <h2 class="text-2xl font-bold">🚚 O trabalho começa depois da assinatura</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t5-p1">
+            Fechar é a parte divertida; <strong class="text-amber-400">o trabalho de verdade começa quando o contrato é assinado</strong>.
+            E é lá que se decide se você vai passar a vida caçando cliente novo ou construir uma base que se renova sozinha por indicação.
+          </p>
+          <div class="space-y-6 mb-6">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Primeira semana define a percepção</h4>
+                <p class="text-sm text-neutral-400">Combine o começo com data, envie o que ficou acordado e faça uma entrega visível pequena logo no início. Cliente novo é cliente inseguro.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Responda rápido, mesmo sem ter a resposta</h4>
+                <p class="text-sm text-neutral-400">"Recebi, olho hoje e te retorno até amanhã" resolve noventa por cento da ansiedade. O cliente quer saber que o assunto dele está sendo cuidado.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Cliente mantido custa muito menos que cliente novo</h4>
+                <p class="text-sm text-neutral-400">Conquistar alguém do zero exige atenção, tempo e prospecção. Manter exige entrega e comunicação. A segunda conta é sempre mais barata.</p></div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+              <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Cliente satisfeito entra pelo fundo do funil</h4>
+                <p class="text-sm text-neutral-400">Quem chega por indicação já vem com confiança emprestada: pula o topo e o meio, e a conversa começa em "quando começamos?".</p></div>
+            </div>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Automatize o aviso de recebimento, nunca a entrega. Uma resposta automática dizendo "recebi, retorno até amanhã" é útil; uma entrega feita no automático, sem alguém olhando, é o começo de um cliente perdido.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 6 -->
+        <section id="topico-6" data-inema-topic="modulo-4-2#topico-6" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+              <h2 class="text-2xl font-bold">📈 Conheça seus números</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t6-p1">
+            Depois que a conversa deixa de ser um sofrimento, começa a parte de engenharia:
+            <strong class="text-amber-400">medir para melhorar</strong>. Sem número, você não sabe se a mudança que fez funcionou — só sabe que o mês foi bom ou ruim.
+          </p>
+          <div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+            <svg viewBox="0 0 1000 240" class="w-full h-auto" role="img" aria-label="Painel com quatro indicadores do processo comercial: conversas iniciadas, diagnósticos feitos, propostas apresentadas e contratos fechados, com as taxas de passagem entre cada etapa destacadas">
+              <defs>
+                <pattern id="m42b-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#f59e0b" opacity="0.12"/></pattern>
+                <marker id="m42b-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"/></marker>
+                <linearGradient id="m42b-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
+                <filter id="m42b-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <rect x="0" y="0" width="1000" height="240" fill="url(#m42b-grid)"/>
+              <g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+                <rect x="30" y="90" width="180" height="66" rx="12" fill="#2b1d05" stroke="#fbbf24" stroke-width="2"/><text x="120" y="118" text-anchor="middle" fill="#fde68a">conversas</text><text x="120" y="139" text-anchor="middle" fill="#fbbf24" font-size="11.5">quantas eu inicio</text>
+                <rect x="290" y="90" width="180" height="66" rx="12" fill="#2b1d05" stroke="#fbbf24" stroke-width="2"/><text x="380" y="118" text-anchor="middle" fill="#fde68a">diagnósticos</text><text x="380" y="139" text-anchor="middle" fill="#fbbf24" font-size="11.5">quantas viram investigação</text>
+                <rect x="550" y="90" width="180" height="66" rx="12" fill="#2b1d05" stroke="#fbbf24" stroke-width="2"/><text x="640" y="118" text-anchor="middle" fill="#fde68a">propostas</text><text x="640" y="139" text-anchor="middle" fill="#fbbf24" font-size="11.5">quantas viram proposta</text>
+                <g filter="url(#m42b-glow)"><rect x="810" y="90" width="160" height="66" rx="12" fill="#2b1d05" stroke="url(#m42b-grad)" stroke-width="2.4"/></g>
+                <text x="890" y="118" text-anchor="middle" fill="#fbbf24" font-size="15">fechados</text><text x="890" y="139" text-anchor="middle" fill="#fde68a" font-size="11.5">taxa de fechamento</text>
+              </g>
+              <g fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.6">
+                <path d="M210,123 L286,123" marker-end="url(#m42b-ah)"/><path d="M470,123 L546,123" marker-end="url(#m42b-ah)"/><path d="M730,123 L806,123" marker-end="url(#m42b-ah)"/>
+              </g>
+              <g font-family="Inter,sans-serif" font-size="11.5"><text x="248" y="108" text-anchor="middle" fill="#9ad6ff">%</text><text x="508" y="108" text-anchor="middle" fill="#9ad6ff">%</text><text x="768" y="108" text-anchor="middle" fill="#9ad6ff">%</text></g>
+              <text x="500" y="206" text-anchor="middle" fill="#6b7280" font-family="Inter,sans-serif" font-size="12">a etapa com a menor passagem é onde você deve trabalhar este mês</text>
+            </svg>
+            <p class="text-xs text-neutral-500 mt-2 text-center">Olhe as porcentagens entre as caixas, não os totais. O gargalo aparece na passagem mais estreita — e é só ela que vale a pena atacar de cada vez.</p>
+          </div>
+          <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🧮</span> Quatro números que bastam para começar</h3>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Quantas conversas você inicia por semana.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Quantas viram diagnóstico de verdade.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Quantas viram proposta apresentada — apresentada, não enviada por escrito e esquecida.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Quantas fecham. Divida pela primeira e você tem sua taxa de fechamento.</span></li>
+            </ul>
+          </div>
+          <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-primary mb-2 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+            <p class="text-neutral-300 text-sm">Uma planilha de cinco colunas resolve. Se quiser algo melhor depois, dá para montar seu próprio controle com ferramentas de IA em poucas horas — mas comece medindo, mesmo que seja no papel.</p>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 7 -->
+        <section id="topico-7" data-inema-topic="modulo-4-2#topico-7" class="mb-16">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-4">
+              <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">7</span>
+              <h2 class="text-2xl font-bold">🤖 Seu copiloto de vendas</h2>
+            </div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar dúvida neste tópico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0">
+              <span aria-hidden="true">?</span><span>Tenho dúvida</span></button>
+          </div>
+          <p class="text-neutral-300 mb-6 leading-relaxed" data-inema-block="m4-2-t7-p1">
+            Você vende automação e IA — aplique no seu próprio processo comercial.
+            <strong class="text-amber-400">Preparação, roteiro, treino e diagnóstico do processo</strong> são tarefas que a IA faz bem.
+            O que ela não faz é a conversa: os sinais da trilha 3 acontecem entre duas pessoas, e ninguém treina isso sem entrar em campo.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+              <h4 class="font-bold text-amber-400 mb-4">✓ Onde a IA ajuda muito</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Pesquisa de pré-conversa e hipóteses de dor.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Roteiros adaptados a cada setor que você atende.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Simulação de cliente difícil para treinar sem gastar oportunidade real.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Análise das suas anotações e do seu funil, apontando gargalos.</span></li>
+              </ul>
+            </div>
+            <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+              <h4 class="font-bold text-red-400 mb-4">✗ Onde ela não substitui você</h4>
+              <ul class="space-y-3 text-neutral-300 text-sm">
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Perceber a mudança de tom quando o assunto dói.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Decidir esperar em silêncio mais três segundos.</span></li>
+                <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Assumir um limite do seu serviço na frente do cliente — isso é confiança, não texto.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+            <div class="p-4 border-b border-dark-600"><h3 class="font-semibold text-amber-400">🎯 Copie e rode agora — auditoria do seu processo</h3></div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-400 mb-3"><strong class="text-neutral-300">Objetivo:</strong> descobrir qual é o gargalo do seu processo comercial e sair com um único experimento para as próximas duas semanas.</p>
+              <pre class="font-mono text-sm bg-dark-900/70 rounded-lg p-4 overflow-x-auto text-neutral-300 whitespace-pre-wrap">Você é meu auditor de processo comercial. Seja específico e evite conselho genérico.
+
+MEUS NÚMEROS DO ÚLTIMO MÊS
+- Conversas iniciadas: &lt;n&gt;
+- Viraram diagnóstico de verdade: &lt;n&gt;
+- Viraram proposta apresentada ao vivo: &lt;n&gt;
+- Fechadas: &lt;n&gt;
+- Ticket médio: &lt;valor&gt;
+
+COMO EU TRABALHO HOJE
+- Abertura: &lt;o que eu faço nos primeiros minutos&gt;
+- Perguntas de raiz que eu costumo fazer: &lt;liste&gt;
+- Como eu falo de preço: &lt;descreva&gt;
+- Como eu termino as conversas: &lt;descreva&gt;
+
+Entregue:
+1. Onde está o MAIOR gargalo, com a conta que sustenta essa conclusão.
+2. As três causas mais prováveis desse gargalo, ligadas ao que eu descrevi acima.
+3. UM experimento para as próximas 2 semanas: o que mudar, em qual etapa,
+   e qual número precisa se mexer para dizer que funcionou.
+4. O que eu NÃO devo mexer agora, para não confundir os resultados.</pre>
+              <p class="text-sm text-neutral-400 mt-3"><strong class="text-neutral-300">Como verificar:</strong> a resposta precisa apontar um único gargalo e um único experimento. Se vier uma lista de dez melhorias, peça de novo exigindo prioridade — mudar tudo ao mesmo tempo garante que você não vai saber o que funcionou.</p>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+            <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🏁</span> O curso inteiro em cinco linhas</h3>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Seja curioso antes de ser convincente.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Escute mais do que fala — quem fala, adivinha.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Descubra a dor de raiz e transforme-a em número.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Leia onde a pessoa está e mude o seu papel de acordo.</span></li>
+              <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">•</span><span>Recapitule, amarre, conduza — e nunca saia sem data marcada.</span></li>
+            </ul>
+          </div>
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30 transition-colors">
+              <span class="inema-ico-todo" aria-hidden="true">○</span><span class="inema-ico-done hidden" aria-hidden="true">●</span>
+              <span class="inema-label-todo">Marcar como lido</span><span class="inema-label-done hidden">Lido</span></button>
+          </div>
+        </section>
+
+        <!-- CHECAGEM LEVE -->
+        <div data-inema-check="modulo-4-2#q1" class="inema-check bg-dark-800 border border-dark-600 rounded-xl p-6 mb-12">
+          <p class="font-medium mb-4">Auto-verificação rápida (opcional): o cliente pede desconto de 30% no mesmo trabalho. Qual é a melhor resposta?</p>
+          <div class="inema-check-options space-y-2">
+            <button type="button" data-inema-check-option="0" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Dar o desconto para não perder a oportunidade</button>
+            <button type="button" data-inema-check-option="1" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Reduzir o escopo proporcionalmente e propor começar por uma parte menor</button>
+            <button type="button" data-inema-check-option="2" class="block w-full text-left px-4 py-2 rounded-lg bg-dark-700 border border-dark-600 hover:bg-dark-600 transition-colors text-sm">Manter o preço e encerrar a conversa imediatamente</button>
+          </div>
+          <div data-inema-check-feedback class="mt-4 text-sm" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- RESUMO FINAL -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🎓</span> Resumo do Módulo</h2>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Preço cedo demais é pedido de referência</strong><span class="text-neutral-400"> — devolva com uma faixa honesta e volte ao problema.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Ceda escopo, nunca só preço</strong><span class="text-neutral-400"> — desconto puro ensina que o número era inflado.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Objeção muda de sentido com o estágio</strong><span class="text-neutral-400"> — descubra a origem antes de responder.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Meça quatro números</strong><span class="text-neutral-400"> — e ataque só a passagem mais estreita de cada vez.</span></div></div>
+            </div>
+            <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+              <h3 class="font-semibold text-amber-400 mb-2">Você chegou ao fim do curso</h3>
+              <p class="text-neutral-300">Quatro trilhas, oito módulos e uma conversa comercial inteira, do primeiro minuto ao contrato. Agora só falta a parte que nenhum curso faz por você: marcar a próxima conversa.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+              <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Voltar ao início do curso →</a>
+            </div>
+          </div>
+        </section>
+
+        <div data-inema-meter="trilha:4" class="inema-meter max-w-md mb-4" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 4">
+          <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Trilha 4:</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+          </div>
+        </div>
+        <div data-inema-meter="curso" class="inema-meter max-w-md mb-8" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do curso">
+          <div class="flex items-center gap-2"><span class="text-xs text-neutral-500 w-24">Curso:</span>
+            <div class="inema-bar flex-1"><div class="inema-bar__fill" data-inema-meter-fill></div></div>
+            <span class="text-xs text-neutral-400 w-14" data-inema-meter-pct>0%</span>
+          </div>
+        </div>
+
+        </div><!-- /coluna principal -->
+
+        <!-- TOC STICKY -->
+        <nav data-inema-toc aria-label="Índice da página" class="hidden lg:block sticky top-24 self-start">
+          <p class="text-sm text-neutral-400 mb-2">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">7</span></p>
+          <ul class="space-y-1 text-sm">
+            <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">1. Preço cedo demais</a></li>
+            <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">2. A faixa</a></li>
+            <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">3. Quem pechincha</a></li>
+            <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">4. Objeções por estágio</a></li>
+            <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">5. Depois da assinatura</a></li>
+            <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">6. Seus números</a></li>
+            <li><a href="#topico-7" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10">7. Copiloto de vendas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    </article>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>🧭 Masterclass: Como Vender Soluções de IA — Módulo 4.2 · Trilha Fechamento e processo · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => {
+        if (exp !== explanation) exp.classList.remove('active');
+      });
+      explanation.classList.toggle('active');
+      button.setAttribute('aria-expanded', explanation.classList.contains('active') ? 'true' : 'false');
+    }
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const htmlEl = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !htmlEl.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); htmlEl.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      htmlEl.classList.toggle('dark');
+      localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>
+    if (window.INEMA && typeof window.INEMA.init === 'function') { window.INEMA.init(); }
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.INEMA && INEMA.registerCheck) {
+        INEMA.registerCheck('modulo-4-2#q1', {
+          answer: 1,
+          explain: {
+            0: "Não: desconto puro sobre o mesmo trabalho ensina que seu número era inflado — e a próxima negociação começa desse novo patamar.",
+            1: "Exato — menos dinheiro, menos escopo. Sai um piloto menor, com resultado medido, e um cliente que pode crescer depois.",
+            2: "Não: pedir para caber no orçamento é negociação legítima. Encerrar sem oferecer um escopo menor descarta oportunidade real."
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
