@@ -1,6 +1,6 @@
 # Masterclass: Como Vender Soluções de IA — plano do curso
 
-Curso interativo do INEMA.CLUB para quem constrói soluções de IA e precisa conduzir a conversa
+Curso interativo do ARCKHÉ AI para quem constrói soluções de IA e precisa conduzir a conversa
 comercial do primeiro "oi" até o dinheiro na conta.
 4 trilhas · 8 módulos · 56 tópicos · formato dark premium com camada de aprendizagem
 (progresso, dúvidas, anotações, "minha jornada", temas e preferências de leitura).
@@ -54,7 +54,7 @@ na ordem em que ela acontece.
 
 ## Decisões de formato
 
-- Todos os módulos têm exatamente **7 tópicos** (`data-inema-topic`), refletidos no manifesto.
+- Todos os módulos têm exatamente **7 tópicos** (`data-ARCKHÉ-topic`), refletidos no manifesto.
 - Cor principal do curso: **teal**. Dentro do curso, as trilhas usam emerald/blue/purple/amber.
 - Assets `learn.css` / `learn.js` compartilhados em `assets/`, referenciados por caminho relativo.
 - Módulos práticos entregam roteiros, perguntas e prompts copiáveis; módulos de fundamento

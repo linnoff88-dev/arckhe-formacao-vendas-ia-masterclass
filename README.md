@@ -1,4 +1,4 @@
-﻿# Masterclass: Como Vender SoluÃ§Ãµes de IA
+# Masterclass: Como Vender SoluÃ§Ãµes de IA
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -6,21 +6,21 @@
 </div>
 
 
-Curso interativo do INEMA.CLUB: 4 trilhas, 8 mÃ³dulos e 56 tÃ³picos sobre conduzir a conversa comercial de uma soluÃ§Ã£o de IA â€” mÃ©todo, diagnÃ³stico, leitura da sala e fechamento.
+Curso interativo do ARCKHÉ AI: 4 trilhas, 8 mÃ³dulos e 56 tÃ³picos sobre conduzir a conversa comercial de uma soluÃ§Ã£o de IA â€” mÃ©todo, diagnÃ³stico, leitura da sala e fechamento.
 
 Abra `index.html` no navegador (funciona offline, sem build e sem cadastro). O progresso, as dÃºvidas e as anotaÃ§Ãµes ficam salvos no seu prÃ³prio navegador.
 
-Publicado em: https://inematds.github.io/formacao-vendas-ia-masterclass/
+Publicado em: https://linnoff88-dev.github.io/
 
 Parte da FormaÃ§Ã£o Vendas com IA.
 
-<!-- inema-backlink:v1 -->
-## Mais no INEMA.CLUB
+<!-- ARCKHÉ-backlink:v1 -->
+## Mais no ARCKHÉ AI
 
-- [Ficha completa deste curso](https://www.inema.club/cursos/255-formacao-vendas-com-ia-5-masterclass-como-vender-solucoes-de-ia/)
-- [Guia: como aprender inteligÃªncia artificial](https://www.inema.club/aprender-inteligencia-artificial/)
-- [Todos os cursos](https://www.inema.club/cursos/)
-<!-- /inema-backlink:v1 -->
+- [Ficha completa deste curso](https://www.ARCKHÉ AI/cursos/255-formacao-vendas-com-ia-5-masterclass-como-vender-solucoes-de-ia/)
+- [Guia: como aprender inteligÃªncia artificial](https://www.ARCKHÉ AI/aprender-inteligencia-artificial/)
+- [Todos os cursos](https://www.ARCKHÉ AI/cursos/)
+<!-- /ARCKHÉ-backlink:v1 -->
 
 ---
 
